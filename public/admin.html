@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <div class="logo-area">
+    <img src="LOGO-removebg-preview.png">
+    <strong>Academy Admin</strong>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+</header>
+
+<main class="dashboard">
+
+<h1>Admission Management</h1>
+
+<div class="table-wrapper">
+
+<table>
+<thead>
+<tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>Phone</th>
+  <th>Email</th>
+  <th>Course</th>
+  <th>Status</th>
+  <th>Action</th>
+</tr>
+</thead>
+
+<tbody id="admissions"></tbody>
+
+</table>
+
+</div>
+
+</main>
+
+<script src="app.js"></script>
+<script>
+loadAdmissions();
+</script>
+
+</body>
+</html>

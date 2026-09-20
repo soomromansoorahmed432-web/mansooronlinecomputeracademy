@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admissions | Mansoor Online Computer Academy</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loader">
+    <img src="logo.png" alt="Mansoor Online Computer Academy Logo">
+
+    <div class="spinner"></div>
+
+    <p>Loading Mansoor Online Computer Academy...</p>
+  </div>
+
+
+  <!-- Header -->
+  <header>
+
+    <div class="logo-area">
+
+      <img
+        src="LOGO-removebg-preview.png"
+        alt="Mansoor Online Computer Academy"
+      >
+
+      <strong>Mansoor Online Computer Academy</strong>
+
+    </div>
+
+    <nav>
+
+      <a href="index.html">Home</a>
+
+      <a href="index.html#courses">Courses</a>
+
+      <a href="admissions.html">Admissions</a>
+
+      <a href="login.html">Login</a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- Admission Section -->
+  <main class="form-page">
+
+    <div class="form-box">
+
+      <img
+        class="login-logo"
+        src="LOGO-removebg-preview.png"
+        alt="Academy Logo"
+      >
+
+      <h1>Online Admission</h1>
+
+      <p style="text-align:center;">
+        Apply for admission to Mansoor Online Computer Academy
+      </p>
+
+
+      <form id="admissionForm">
+
+        <!-- Student Name -->
+        <label>Student Name</label>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter student name"
+          required
+        >
+
+
+        <!-- Father's Name -->
+        <label>Father's Name</label>
+
+        <input
+          type="text"
+          name="fatherName"
+          placeholder="Enter father's name"
+          required
+        >
+
+
+        <!-- Phone -->
+        <label>Phone Number</label>
+
+        <input
+          type="tel"
+          name="phone"
+          placeholder="03XX XXXXXXX"
+          required
+        >
+
+
+        <!-- Email -->
+        <label>Email Address</label>
+
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+        >
+
+
+        <!-- Date of Birth -->
+        <label>Date of Birth</label>
+
+        <input
+          type="date"
+          name="dob"
+          required
+        >
+
+
+        <!-- Gender -->
+        <label>Gender</label>
+
+        <select name="gender" required>
+
+          <option value="">
+            Select Gender
+          </option>
+
+          <option value="Male">
+            Male
+          </option>
+
+          <option value="Female">
+            Female
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+
+        <!-- Course -->
+        <label>Select Course</label>
+
+        <select name="course" required>
+
+          <option value="">
+            Select Course
+          </option>
+
+          <option value="Computer Science">
+            Computer Science
+          </option>
+
+          <option value="English Language">
+            English Language
+          </option>
+
+          <option value="Mathematics">
+            Mathematics
+          </option>
+
+          <option value="Online Skills">
+            Online Skills
+          </option>
+
+          <option value="Web Development">
+            Web Development
+          </option>
+
+          <option value="Graphic Designing">
+            Graphic Designing
+          </option>
+
+        </select>
+
+
+        <!-- Education -->
+        <label>Previous Education</label>
+
+        <input
+          type="text"
+          name="education"
+          placeholder="e.g. Matric, Intermediate"
+        >
+
+
+        <!-- City -->
+        <label>City</label>
+
+        <input
+          type="text"
+          name="city"
+          placeholder="Enter your city"
+          required
+        >
+
+
+        <!-- Address -->
+        <label>Address</label>
+
+        <textarea
+          name="address"
+          placeholder="Enter your complete address"
+          rows="3"
+        ></textarea>
+
+
+        <!-- Message -->
+        <label>Additional Message</label>
+
+        <textarea
+          name="message"
+          placeholder="Write your message..."
+          rows="4"
+        ></textarea>
+
+
+        <!-- Terms -->
+        <label
+          style="
+            display:flex;
+            gap:10px;
+            align-items:center;
+            margin-top:15px;
+          "
+        >
+
+          <input
+            type="checkbox"
+            id="terms"
+            required
+            style="width:auto;"
+          >
+
+          I confirm that the information provided
+          is correct.
+
+        </label>
+
+
+        <!-- Submit -->
+        <button type="submit">
+
+          Submit Admission
+
+        </button>
+
+      </form>
+
+
+      <!-- Result -->
+      <div
+        id="result"
+        style="
+          margin-top:20px;
+          text-align:center;
+          font-weight:bold;
+        "
+      ></div>
+
+    </div>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+
+    <h3>Mansoor Online Computer Academy</h3>
+
+    <p>
+      Quality Education • Anywhere • Anytime
+    </p>
+
+    <p>
+      © 2026 Mansoor Online Computer Academy
+    </p>
+
+  </footer>
+
+
+  <script src="app.js"></script>
+
+
+  <!-- Admission JavaScript -->
+  <script>
+
+    const form =
+      document.getElementById("admissionForm");
+
+    const result =
+      document.getElementById("result");
+
+
+    form.addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+
+      result.innerText =
+        "Submitting your admission...";
+
+
+      const formData =
+        new FormData(form);
+
+
+      const data =
+        Object.fromEntries(formData.entries());
+
+
+      try {
+
+        const response =
+          await fetch("/api/admission", {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+
+          });
+
+
+        const responseData =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          result.innerText =
+            responseData.message ||
+            "Something went wrong.";
+
+          return;
+
+        }
+
+
+        result.innerText =
+          "✅ Admission submitted successfully!";
+
+
+        form.reset();
+
+
+      } catch(error) {
+
+        result.innerText =
+          "❌ Server connection failed.";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>

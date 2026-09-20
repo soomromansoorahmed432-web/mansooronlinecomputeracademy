@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission - Mansoor Online Academy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="loader">
+  <img src="LOGO-removebg-preview.png">
+  <div class="spinner"></div>
+  <p>Please wait...</p>
+</div>
+
+<header>
+  <div class="logo-area">
+    <img src="logo.png">
+    <strong>Mansoor Online Academy</strong>
+  </div>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/login.html">Login</a>
+  </nav>
+</header>
+
+<main class="form-page">
+
+<div class="form-box">
+  <h1>Online Admission</h1>
+  <p>Fill in the form to apply.</p>
+
+  <form id="admissionForm">
+
+    <input
+      type="text"
+      name="name"
+      placeholder="Student Name"
+      required
+    >
+
+    <input
+      type="tel"
+      name="phone"
+      placeholder="Phone Number"
+      required
+    >
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Email Address"
+    >
+
+    <select name="course" required>
+      <option value="">Select Course</option>
+      <option>Computer Science</option>
+      <option>English Language</option>
+      <option>Mathematics</option>
+      <option>Online Skills</option>
+    </select>
+
+    <textarea
+      name="message"
+      placeholder="Additional Message"
+    ></textarea>
+
+    <button type="submit">Submit Admission</button>
+
+  </form>
+
+  <div id="result"></div>
+</div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
